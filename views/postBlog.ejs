@@ -1,0 +1,32 @@
+<html lang="en">
+<%- include ('./partials/header') -%>
+
+<form action="">
+    <label for="">Title</label>
+    <input type="text" name="title" required>
+    <label for="">Author</label>
+    <input type="text" name="author">
+    <label for="">Body</label>
+    <input type="text/area" name="body" id="">
+    <button>Submit</button>
+</form>
+<script>
+    const form =document.querySelector('form');
+    form.addEventListener('submit',(e)=>{
+        e.preventDefault();
+        const title=form.title.value;
+        const author=form.author.value;
+        const body=form.body.value;
+        fetch('/blogs',{
+            method: 'POST',
+            body: JSON.stringify({
+                title: title,
+                author: author,
+                body: body
+            }),
+            headers:{'content-type':'application/json'}
+        }).then((result)=>{window.location.assign('/blogs')});
+    })
+</script>
+</body>
+</html>

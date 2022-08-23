@@ -1,0 +1,24 @@
+<html lang="en">
+<%- include ('./partials/header') -%>
+<h1><%= blog.title %></h1>
+<p>
+
+
+</p>
+<h3>Written by <%=blog.author%></h3>
+<hr>
+<p><%=blog.body%></p>
+
+<button data-doc="<%=blog._id%>" >Delete</button>
+</body>
+<script>
+    const button =document.querySelector('button');
+    button.addEventListener('click',(e)=>{
+        e.preventDefault();
+        const url=`/blogs/${button.dataset.doc}`;
+        fetch(url,{
+            method: 'DELETE'
+        }).then((result)=>{window.location.assign('/blogs')});
+    });
+</script>
+</html>

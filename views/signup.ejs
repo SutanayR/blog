@@ -1,0 +1,48 @@
+<html lang="en">
+<%- include ('./partials/header') -%>
+<h1>Signup Page</h1>
+<form action="">
+    <label for="">Email</label>
+    <input type="email" name="email">
+    <div class="emailError"></div>
+    <label for="">Password</label>
+    <input type="password" name="password">
+    <div class="pwdError"></div>
+    <label for="">Phone number</label>
+    <input type="tel" pattern="[0-9]{10}" name="number">
+    <div class="numError"></div>
+    <button>Submit</button>
+</form>
+<script>
+    const form=document.querySelector('form');
+    const emailError=document.querySelector('.emailError');
+    const pwdError=document.querySelector('.pwdError');
+    const numError=document.querySelector('.numError');
+
+    form.addEventListener('submit',async(e)=>{
+        e.preventDefault();
+        const email=form.email.value;
+        const password=form.password.value;
+        const number=form.number.value;
+        emailError.textContent='';
+        pwdError.textContent='';
+        numError.textContent='';
+        const res=await fetch('/signup',{
+        method:'POST',
+        body:JSON.stringify({email:email,password:password,number:number}),
+        headers:{'content-type':'application/json'}
+        });
+        res.json().then(result=>{
+            if(!result.resp.istrue)
+           {emailError.textContent= result.resp.email;
+           pwdError.textContent=result.resp.password;
+           numError.textContent=result.resp.number;
+           }
+           else
+           window.location.assign('/');
+        });
+    })
+    
+</script>
+</body>
+</html>
