@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -21,6 +22,9 @@
     "node-rsa": "^1.1.1",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
   }
 }
